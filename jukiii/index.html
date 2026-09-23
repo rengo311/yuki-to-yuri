@@ -1,0 +1,3004 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Yuki to Yuri ♡</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    overflow:hidden;
+    background:#10162b;
+    font-family:"Courier New",monospace;
+}
+
+
+/* =========================================================
+   SCREEN SYSTEM
+========================================================= */
+
+.screen{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:scale(1.02);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.screen.active{
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+#intro{
+    background:#11182e;
+    color:#ffdce7;
+    flex-direction:column;
+}
+
+.intro-text{
+    font-size:clamp(25px,6vw,60px);
+    letter-spacing:4px;
+    animation:introFade 2.5s ease forwards;
+}
+
+.intro-sub{
+    margin-top:12px;
+    font-size:11px;
+    opacity:.45;
+}
+
+@keyframes introFade{
+
+    0%{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    30%{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+    75%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================================
+   PLAY
+========================================================= */
+
+#play{
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            #354c7d 0,
+            #202d52 38%,
+            #10162b 100%
+        );
+
+    color:#fff;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.play-stars{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.play-star{
+    position:absolute;
+    color:#ffdce7;
+    animation:twinkle 2s infinite alternate;
+}
+
+.ps1{top:12%;left:9%}
+.ps2{top:22%;left:23%}
+.ps3{top:10%;right:18%}
+.ps4{top:35%;right:8%}
+.ps5{bottom:22%;left:12%}
+.ps6{bottom:15%;right:20%}
+.ps7{top:8%;left:52%}
+
+@keyframes twinkle{
+
+    from{
+        opacity:.25;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1.15);
+    }
+
+}
+
+.play-logo{
+    font-size:clamp(48px,11vw,105px);
+    letter-spacing:9px;
+    text-shadow:6px 6px 0 #d66b8d;
+}
+
+.play-to{
+    margin-top:-4px;
+    color:#ffcbd9;
+    font-size:16px;
+    letter-spacing:6px;
+}
+
+.play-description{
+    margin-top:18px;
+    font-size:11px;
+    opacity:.55;
+}
+
+.play-button{
+    margin-top:35px;
+
+    border:4px solid #ffdce7;
+
+    background:#ffdce7;
+    color:#151b31;
+
+    padding:14px 42px;
+
+    font-family:monospace;
+    font-weight:bold;
+    font-size:18px;
+
+    cursor:pointer;
+
+    box-shadow:7px 7px 0 #d66b8d;
+
+    transition:.15s;
+}
+
+.play-button:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:10px 10px 0 #d66b8d;
+}
+
+
+/* =========================================================
+   GAME
+========================================================= */
+
+#gameScreen{
+    background:#0e1427;
+}
+
+.game{
+
+    position:relative;
+
+    width:min(1100px,96vw);
+    height:min(680px,94vh);
+
+    overflow:hidden;
+
+    border:5px solid #12172a;
+
+    box-shadow:
+        12px 12px 0 rgba(0,0,0,.3);
+
+    background:#8aa9cf;
+
+    image-rendering:pixelated;
+}
+
+
+/* =========================================================
+   SKY
+========================================================= */
+
+.sky{
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            #202b55 0%,
+            #354b76 48%,
+            #9a7189 75%,
+            #e39aac 100%
+        );
+}
+
+
+/* =========================================================
+   STARS
+========================================================= */
+
+.sky-star{
+
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    background:#fff;
+
+    box-shadow:0 0 4px #fff;
+
+    animation:skyTwinkle 2s infinite alternate;
+}
+
+.ss1{top:9%;left:8%}
+.ss2{top:15%;left:17%}
+.ss3{top:7%;left:31%}
+.ss4{top:18%;left:44%}
+.ss5{top:10%;left:62%}
+.ss6{top:23%;left:73%}
+.ss7{top:8%;right:8%}
+.ss8{top:29%;right:17%}
+.ss9{top:14%;right:28%}
+.ss10{top:34%;left:11%}
+
+@keyframes skyTwinkle{
+
+    from{
+        opacity:.25;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* =========================================================
+   MOON
+========================================================= */
+
+.moon{
+
+    position:absolute;
+
+    top:8%;
+    right:12%;
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    background:#ffeac0;
+
+    box-shadow:
+        0 0 20px rgba(255,235,190,.35);
+}
+
+.moon:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:75px;
+    height:75px;
+
+    border-radius:50%;
+
+    left:-17px;
+    top:-7px;
+
+    background:#26365d;
+}
+
+
+/* =========================================================
+   CLOUDS
+========================================================= */
+
+.cloud{
+
+    position:absolute;
+
+    width:90px;
+    height:14px;
+
+    background:#d5d8e9;
+
+    opacity:.35;
+
+    box-shadow:
+        15px -9px 0 #d5d8e9,
+        35px -13px 0 #d5d8e9,
+        55px -7px 0 #d5d8e9;
+
+    animation:cloudMove 18s linear infinite;
+}
+
+.cloud1{
+    top:22%;
+    left:-120px;
+}
+
+.cloud2{
+    top:36%;
+    left:40%;
+    transform:scale(.7);
+}
+
+@keyframes cloudMove{
+
+    from{
+        transform:translateX(-120px);
+    }
+
+    to{
+        transform:translateX(1200px);
+    }
+
+}
+
+
+/* =========================================================
+   CITY
+========================================================= */
+
+.city{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:29%;
+
+    height:190px;
+
+    display:flex;
+    align-items:flex-end;
+
+    gap:7px;
+
+    padding:0 20px;
+}
+
+.building{
+
+    width:clamp(35px,6vw,75px);
+
+    background:#202a49;
+
+    position:relative;
+}
+
+.b1{height:80px}
+.b2{height:130px}
+.b3{height:105px}
+.b4{height:155px}
+.b5{height:92px}
+.b6{height:125px}
+.b7{height:70px}
+.b8{height:145px}
+.b9{height:100px}
+
+.building:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:12px 9px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #e5bb79 0 7px,
+            transparent 7px 19px
+        );
+
+    opacity:.45;
+}
+
+
+/* =========================================================
+   HILLS
+========================================================= */
+
+.hill{
+
+    position:absolute;
+
+    bottom:28%;
+
+    width:100%;
+    height:100px;
+
+    background:#283c55;
+
+    clip-path:
+        polygon(
+            0 100%,
+            12% 50%,
+            24% 80%,
+            37% 28%,
+            51% 78%,
+            66% 35%,
+            80% 74%,
+            91% 45%,
+            100% 80%,
+            100% 100%
+        );
+}
+
+
+/* =========================================================
+   GROUND
+========================================================= */
+
+.ground{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:29%;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #70412f 0 13px,
+            #7c4931 13px 25px
+        );
+
+    border-top:7px solid #39704c;
+}
+
+.grass{
+
+    position:absolute;
+
+    top:-11px;
+
+    left:0;
+    right:0;
+
+    height:14px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #3e9855 0 9px,
+            #62b86c 9px 16px,
+            #337d48 16px 23px
+        );
+}
+
+
+/* =========================================================
+   TREES
+========================================================= */
+
+.tree{
+
+    position:absolute;
+
+    bottom:27%;
+
+    width:105px;
+    height:170px;
+
+    z-index:5;
+}
+
+.tree-left{
+    left:2%;
+}
+
+.tree-right{
+    right:1%;
+}
+
+.tree-trunk{
+
+    position:absolute;
+
+    bottom:0;
+    left:44px;
+
+    width:20px;
+    height:70px;
+
+    background:#57382f;
+}
+
+.tree-top{
+
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    border-radius:12px;
+
+    background:#2e754b;
+
+    left:13px;
+    top:8px;
+
+    box-shadow:
+        35px 28px 0 #3c8d55,
+        -25px 34px 0 #276b43,
+        22px 50px 0 #337c4b;
+}
+
+
+/* =========================================================
+   FLOWERS
+========================================================= */
+
+.flower{
+
+    position:absolute;
+
+    bottom:29%;
+
+    font-size:20px;
+
+    z-index:10;
+
+    animation:
+        flowerFloat 2.4s infinite ease-in-out;
+}
+
+.flower1{left:19%}
+.flower2{left:26%}
+.flower3{right:25%}
+.flower4{right:18%}
+
+@keyframes flowerFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+}
+
+
+/* =========================================================
+   LAMPS
+========================================================= */
+
+.lamp{
+
+    position:absolute;
+
+    bottom:29%;
+
+    width:18px;
+    height:48px;
+
+    background:#30384c;
+
+    z-index:12;
+}
+
+.lamp:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:25px;
+    height:25px;
+
+    left:-3px;
+    top:-18px;
+
+    background:#ffd67e;
+
+    border-radius:5px;
+
+    box-shadow:
+        0 0 18px rgba(255,214,126,.7);
+}
+
+.lamp1{left:14%}
+.lamp2{right:14%}
+
+
+/* =========================================================
+   RABBIT
+========================================================= */
+
+.rabbit{
+
+    position:absolute;
+
+    z-index:30;
+
+    left:17%;
+    bottom:28%;
+
+    width:180px;
+    height:260px;
+
+    image-rendering:pixelated;
+
+    animation:rabbitIdle 2s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            6px 7px 0 rgba(0,0,0,.25)
+        );
+}
+
+.rabbit-head{
+
+    position:absolute;
+
+    left:42px;
+    top:70px;
+
+    width:92px;
+    height:82px;
+
+    background:#fff7f2;
+
+    border:6px solid #5b5364;
+
+    border-radius:
+        42% 42% 38% 38%;
+
+    box-shadow:
+        inset -7px -5px 0 #eadfe3;
+}
+
+.rabbit-ear{
+
+    position:absolute;
+
+    top:8px;
+
+    width:42px;
+    height:92px;
+
+    background:#fff7f2;
+
+    border:6px solid #5b5364;
+
+    border-radius:
+        50% 50% 35% 35%;
+}
+
+.rabbit-ear:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:12px 10px 17px;
+
+    background:#f2b9c8;
+
+    border-radius:50%;
+}
+
+.rabbit-ear-left{
+    left:48px;
+    transform:rotate(-8deg);
+}
+
+.rabbit-ear-right{
+    left:91px;
+    transform:rotate(8deg);
+}
+
+.rabbit-eye{
+
+    position:absolute;
+
+    top:29px;
+
+    width:9px;
+    height:12px;
+
+    background:#302b3b;
+}
+
+.rabbit-eye-left{
+    left:23px;
+}
+
+.rabbit-eye-right{
+    right:23px;
+}
+
+.rabbit-nose{
+
+    position:absolute;
+
+    left:41px;
+    top:48px;
+
+    width:10px;
+    height:8px;
+
+    background:#e28ba5;
+
+    transform:rotate(45deg);
+}
+
+.rabbit-mouth{
+
+    position:absolute;
+
+    left:43px;
+    top:57px;
+
+    width:7px;
+    height:9px;
+
+    border-left:3px solid #5b5364;
+    border-bottom:3px solid #5b5364;
+
+    transform:rotate(-45deg);
+}
+
+.rabbit-body{
+
+    position:absolute;
+
+    left:50px;
+    top:143px;
+
+    width:78px;
+    height:82px;
+
+    background:#fff7f2;
+
+    border:6px solid #5b5364;
+
+    border-radius:
+        45% 45% 30% 30%;
+
+    box-shadow:
+        inset -7px -5px 0 #eadfe3;
+}
+
+.rabbit-arm{
+
+    position:absolute;
+
+    top:154px;
+
+    width:25px;
+    height:65px;
+
+    background:#fff7f2;
+
+    border:6px solid #5b5364;
+
+    border-radius:15px;
+}
+
+.rabbit-arm-left{
+    left:34px;
+    transform:rotate(24deg);
+}
+
+.rabbit-arm-right{
+    left:119px;
+    transform:rotate(-24deg);
+}
+
+.rabbit-foot{
+
+    position:absolute;
+
+    top:205px;
+
+    width:45px;
+    height:27px;
+
+    background:#fff7f2;
+
+    border:6px solid #5b5364;
+
+    border-radius:50%;
+}
+
+.rabbit-foot-left{
+    left:43px;
+}
+
+.rabbit-foot-right{
+    left:91px;
+}
+
+@keyframes rabbitIdle{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+
+/* =========================================================
+   DIALOGUE
+========================================================= */
+
+.dialogue{
+
+    position:absolute;
+
+    z-index:80;
+
+    top:5%;
+    left:6%;
+    right:6%;
+
+    min-height:105px;
+
+    background:#fff;
+
+    border:5px solid #f06e98;
+
+    padding:17px 23px;
+
+    color:#292742;
+
+    box-shadow:
+        6px 6px 0 #c65379;
+}
+
+.dialogue-name{
+
+    color:#ef6793;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+}
+
+.dialogue-text{
+
+    font-size:
+        clamp(
+            11px,
+            1.5vw,
+            17px
+        );
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   COUNTER
+========================================================= */
+
+.counter{
+
+    position:absolute;
+
+    right:4%;
+    top:4%;
+
+    z-index:90;
+
+    padding:6px 9px;
+
+    background:#20243c;
+
+    color:#fff;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   ANSWERS
+========================================================= */
+
+.answers{
+
+    position:absolute;
+
+    right:8%;
+    bottom:31%;
+
+    width:min(310px,30%);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    z-index:90;
+}
+
+.answer{
+
+    border:4px solid #f06e98;
+
+    background:#fff;
+
+    color:#27253e;
+
+    padding:12px 15px;
+
+    font-family:monospace;
+
+    font-size:
+        clamp(
+            10px,
+            1.4vw,
+            16px
+        );
+
+    text-align:left;
+
+    cursor:pointer;
+
+    box-shadow:
+        4px 4px 0 rgba(0,0,0,.22);
+
+    transition:.15s;
+}
+
+.answer:hover{
+    transform:translateX(-3px);
+}
+
+.answer.correct{
+    background:#b9f2c7;
+    border-color:#45a866;
+}
+
+.answer.wrong{
+    background:#ffc1ce;
+    border-color:#d64f70;
+    animation:wrongShake .3s;
+}
+
+@keyframes wrongShake{
+
+    0%,100%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-7px);
+    }
+
+    75%{
+        transform:translateX(7px);
+    }
+}
+
+
+/* =========================================================
+   REWARD
+========================================================= */
+
+.reward{
+
+    position:absolute;
+
+    left:50%;
+    bottom:39%;
+
+    transform:
+        translateX(-50%)
+        scale(.5);
+
+    opacity:0;
+
+    z-index:100;
+
+    pointer-events:none;
+
+    transition:.3s;
+}
+
+.reward.show{
+
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+}
+
+.reward-star{
+
+    font-size:55px;
+}
+
+.reward-flower{
+
+    font-size:42px;
+
+    position:absolute;
+
+    left:42px;
+    top:35px;
+}
+
+
+/* =========================================================
+   SONG
+========================================================= */
+
+#song{
+
+    background:
+        radial-gradient(
+            circle at center,
+            #3b4c78,
+            #10162b 75%
+        );
+
+    color:#ffe1ea;
+
+    text-align:center;
+}
+
+.song-card{
+
+    width:min(500px,90vw);
+
+    padding:40px 25px;
+
+    background:#fff5f7;
+
+    border:
+        5px solid #292741;
+
+    box-shadow:
+        10px 10px 0 #d66b8d;
+
+    color:#292741;
+}
+
+.song-note{
+
+    font-size:55px;
+
+    color:#d66b8d;
+
+    animation:noteFloat 1.5s infinite;
+}
+
+@keyframes noteFloat{
+
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+.song-card h1{
+
+    font-size:
+        clamp(
+            35px,
+            8vw,
+            55px
+        );
+
+    color:#292741;
+}
+
+.artist{
+
+    margin-top:7px;
+
+    color:#d65f83;
+
+    font-weight:bold;
+}
+
+.guess{
+
+    margin-top:25px;
+
+    line-height:1.7;
+
+    color:#62576a;
+}
+
+.music-button{
+
+    margin-top:25px;
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    border:4px solid #292741;
+
+    background:#f06e98;
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.song-next{
+
+    display:block;
+
+    margin:25px auto 0;
+
+    border:0;
+
+    background:#d66b8d;
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    font-family:monospace;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   LETTERS
+========================================================= */
+
+#letters{
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffdce7,
+            #f6c4d2 75%
+        );
+}
+
+.letters-box{
+
+    width:min(800px,92vw);
+
+    text-align:center;
+}
+
+.letters-title{
+
+    color:#9f4963;
+
+    font-size:
+        clamp(
+            30px,
+            7vw,
+            55px
+        );
+
+    margin-bottom:8px;
+}
+
+.letters-sub{
+
+    color:#9b6677;
+
+    margin-bottom:25px;
+}
+
+.paper{
+
+    min-height:320px;
+
+    background:#fffdf8;
+
+    border:
+        5px solid #292741;
+
+    padding:45px 35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    color:#44394b;
+
+    box-shadow:
+        8px 8px 0 rgba(41,39,65,.2);
+}
+
+.letter-controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    margin-top:18px;
+
+    color:#292741;
+}
+
+.arrow{
+
+    width:42px;
+    height:42px;
+
+    border:0;
+
+    background:#d66b8d;
+
+    color:#fff;
+
+    font-size:20px;
+
+    cursor:pointer;
+}
+
+.memories-button{
+
+    margin-top:25px;
+
+    border:0;
+
+    background:#d66b8d;
+
+    color:#fff;
+
+    padding:13px 25px;
+
+    font-family:monospace;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        5px 5px 0 #a84e6b;
+}
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+#memories{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe0e6,
+            #fff1ed
+        );
+
+    padding:15px;
+}
+
+.memories-box{
+
+    width:min(1050px,95vw);
+
+    height:92vh;
+
+    overflow:auto;
+
+    background:#fff5f7;
+
+    border:5px solid #292741;
+
+    padding:25px;
+}
+
+.memories-title{
+
+    text-align:center;
+
+    color:#a24c64;
+
+    font-family:Georgia,serif;
+
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            55px
+        );
+
+    margin-bottom:25px;
+}
+
+
+/* =========================================================
+   POLAROID GRID
+========================================================= */
+
+.gallery{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0,1fr)
+        );
+
+    gap:22px 20px;
+
+    align-items:start;
+}
+
+
+/* =========================================================
+   POLAROID
+========================================================= */
+
+.photo{
+
+    min-width:0;
+
+    background:#fff;
+
+    padding:
+        9px
+        9px
+        20px;
+
+    box-shadow:
+        4px 6px 15px rgba(0,0,0,.18);
+
+    transform:
+        rotate(var(--rotation));
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+    cursor:zoom-in;
+
+    position:relative;
+}
+
+
+/* tape */
+
+.photo::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-7px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    width:48px;
+    height:12px;
+
+    background:
+        rgba(
+            255,
+            224,
+            178,
+            .55
+        );
+
+    z-index:2;
+}
+
+
+/* hover */
+
+.photo:hover{
+
+    transform:
+        rotate(0deg)
+        scale(1.04);
+
+    z-index:10;
+
+    box-shadow:
+        7px 11px 22px rgba(0,0,0,.23);
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.photo img{
+
+    display:block;
+
+    width:100%;
+
+    /*
+       الصورة مش هتتقص
+       مهما كان مقاسها
+    */
+
+    height:145px;
+
+    object-fit:contain;
+
+    background:#eee;
+}
+
+
+/* =========================================================
+   MEMORY TEXT
+========================================================= */
+
+.photo p{
+
+    margin:
+        9px
+        2px
+        0;
+
+    text-align:center;
+
+    color:#292741;
+
+    font-family:cursive;
+
+    font-size:14px;
+
+    line-height:1.1;
+}
+
+
+/* =========================================================
+   IMAGE ZOOM
+========================================================= */
+
+.memory-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:15px;
+
+    background:
+        rgba(
+            10,
+            12,
+            25,
+            .88
+        );
+
+    cursor:zoom-out;
+}
+
+.memory-overlay.show{
+    display:flex;
+}
+
+.memory-overlay img{
+
+    max-width:95vw;
+
+    max-height:92vh;
+
+    width:auto;
+
+    height:auto;
+
+    object-fit:contain;
+
+    background:#fff;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.5);
+
+    cursor:default;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+#final{
+
+    background:
+        radial-gradient(
+            circle at center,
+            #293962,
+            #10162b 75%
+        );
+
+    color:#ffe1ea;
+
+    text-align:center;
+
+    flex-direction:column;
+}
+
+.final-heart{
+
+    font-size:80px;
+
+    animation:
+        finalHeart 1.3s infinite;
+}
+
+@keyframes finalHeart{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.17);
+    }
+}
+
+.final-title{
+
+    margin-top:12px;
+
+    font-size:
+        clamp(
+            35px,
+            7vw,
+            65px
+        );
+}
+
+.final-text{
+
+    margin-top:18px;
+
+    max-width:560px;
+
+    line-height:1.8;
+
+    opacity:.7;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    body{
+        overflow:hidden;
+    }
+
+
+    /* PLAY */
+
+    .play-logo{
+        font-size:55px;
+    }
+
+    .play-to{
+        font-size:12px;
+        letter-spacing:4px;
+    }
+
+    .play-description{
+        font-size:9px;
+    }
+
+
+    /* GAME */
+
+    .game{
+
+        width:96vw;
+
+        height:92vh;
+    }
+
+
+    .moon{
+
+        width:48px;
+        height:48px;
+    }
+
+    .moon:after{
+
+        width:48px;
+        height:48px;
+    }
+
+
+    .city{
+        height:130px;
+    }
+
+
+    .tree{
+
+        transform:scale(.7);
+
+        transform-origin:bottom;
+    }
+
+
+    /* RABBIT */
+
+    .rabbit{
+
+        left:1%;
+
+        bottom:28%;
+
+        transform:
+            scale(.68);
+
+        transform-origin:
+            bottom left;
+    }
+
+
+    /* DIALOGUE */
+
+    .dialogue{
+
+        top:4%;
+
+        left:4%;
+        right:4%;
+
+        min-height:82px;
+
+        padding:
+            12px
+            15px;
+    }
+
+    .dialogue-text{
+        font-size:10px;
+    }
+
+
+    /* ANSWERS */
+
+    .answers{
+
+        right:4%;
+
+        bottom:30%;
+
+        width:47%;
+    }
+
+    .answer{
+
+        padding:
+            8px
+            9px;
+
+        font-size:9px;
+
+        border-width:3px;
+    }
+
+
+    /* REWARD */
+
+    .reward{
+        left:39%;
+    }
+
+
+    /* LETTERS */
+
+    .paper{
+
+        min-height:270px;
+
+        padding:
+            25px
+            18px;
+
+        font-size:16px;
+    }
+
+
+    /* =====================================================
+       MEMORIES ON PHONE
+    ===================================================== */
+
+    #memories{
+
+        padding:8px;
+    }
+
+
+    .memories-box{
+
+        width:96vw;
+
+        height:94vh;
+
+        padding:
+            16px
+            9px
+            25px;
+
+        border-width:3px;
+    }
+
+
+    .memories-title{
+
+        font-size:
+            clamp(
+                27px,
+                8vw,
+                38px
+            );
+
+        margin-bottom:22px;
+    }
+
+
+    /*
+       3 صور في الصف
+       = 12 صورة تظهر 3 × 4
+    */
+
+    .gallery{
+
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0,1fr)
+            );
+
+        gap:
+            15px
+            8px;
+    }
+
+
+    .photo{
+
+        padding:
+            5px
+            5px
+            9px;
+    }
+
+
+    .photo::before{
+
+        width:32px;
+
+        height:8px;
+
+        top:-5px;
+    }
+
+
+    .photo img{
+
+        width:100%;
+
+        /*
+           شكل الصورة داخل Polaroid
+        */
+
+        height:82px;
+
+        object-fit:contain;
+    }
+
+
+    .photo p{
+
+        margin-top:6px;
+
+        font-size:8px;
+    }
+
+
+    /* ZOOM */
+
+    .memory-overlay{
+
+        padding:8px;
+    }
+
+    .memory-overlay img{
+
+        max-width:96vw;
+
+        max-height:88vh;
+
+        width:auto;
+
+        height:auto;
+
+        object-fit:contain;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media(max-width:380px){
+
+    .gallery{
+
+        gap:
+            12px
+            6px;
+    }
+
+    .photo{
+
+        padding:
+            4px
+            4px
+            8px;
+    }
+
+    .photo img{
+
+        height:70px;
+    }
+
+    .photo p{
+
+        font-size:7px;
+    }
+
+    .memories-title{
+
+        font-size:25px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     INTRO
+========================================================= -->
+
+<section
+    id="intro"
+    class="screen active"
+>
+
+    <div class="intro-text">
+        coding by yuki
+    </div>
+
+    <div class="intro-sub">
+        something special is loading...
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PLAY
+========================================================= -->
+
+<section
+    id="play"
+    class="screen"
+>
+
+    <div class="play-stars">
+
+        <span class="play-star ps1">✦</span>
+        <span class="play-star ps2">♡</span>
+        <span class="play-star ps3">✧</span>
+        <span class="play-star ps4">♡</span>
+        <span class="play-star ps5">✦</span>
+        <span class="play-star ps6">♡</span>
+        <span class="play-star ps7">✧</span>
+
+    </div>
+
+
+    <div class="play-logo">
+        YUKI
+    </div>
+
+    <div class="play-to">
+        TO YURI
+    </div>
+
+    <div class="play-description">
+        a tiny adventure made just for you ♡
+    </div>
+
+    <button
+        class="play-button"
+        onclick="startGame()"
+    >
+        ▶ PLAY
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     GAME
+========================================================= -->
+
+<section
+    id="gameScreen"
+    class="screen"
+>
+
+<div class="game">
+
+
+    <div class="sky">
+
+        <div class="sky-star ss1"></div>
+        <div class="sky-star ss2"></div>
+        <div class="sky-star ss3"></div>
+        <div class="sky-star ss4"></div>
+        <div class="sky-star ss5"></div>
+        <div class="sky-star ss6"></div>
+        <div class="sky-star ss7"></div>
+        <div class="sky-star ss8"></div>
+        <div class="sky-star ss9"></div>
+        <div class="sky-star ss10"></div>
+
+        <div class="moon"></div>
+
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+
+        <div class="hill"></div>
+
+        <div class="city">
+
+            <div class="building b1"></div>
+            <div class="building b2"></div>
+            <div class="building b3"></div>
+            <div class="building b4"></div>
+            <div class="building b5"></div>
+            <div class="building b6"></div>
+            <div class="building b7"></div>
+            <div class="building b8"></div>
+            <div class="building b9"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="tree tree-left">
+
+        <div class="tree-top"></div>
+        <div class="tree-trunk"></div>
+
+    </div>
+
+
+    <div class="tree tree-right">
+
+        <div class="tree-top"></div>
+        <div class="tree-trunk"></div>
+
+    </div>
+
+
+    <div class="lamp lamp1"></div>
+    <div class="lamp lamp2"></div>
+
+
+    <div class="flower flower1">🌸</div>
+    <div class="flower flower2">🌼</div>
+    <div class="flower flower3">🌷</div>
+    <div class="flower flower4">🌸</div>
+
+
+    <div class="ground">
+
+        <div class="grass"></div>
+
+    </div>
+
+
+    <!-- RABBIT -->
+
+    <div
+        class="rabbit"
+        aria-label="2D pixel rabbit"
+    >
+
+        <div class="rabbit-ear rabbit-ear-left"></div>
+        <div class="rabbit-ear rabbit-ear-right"></div>
+
+        <div class="rabbit-head">
+
+            <div
+                class="rabbit-eye rabbit-eye-left"
+            ></div>
+
+            <div
+                class="rabbit-eye rabbit-eye-right"
+            ></div>
+
+            <div class="rabbit-nose"></div>
+
+            <div class="rabbit-mouth"></div>
+
+        </div>
+
+        <div class="rabbit-body"></div>
+
+        <div
+            class="rabbit-arm rabbit-arm-left"
+        ></div>
+
+        <div
+            class="rabbit-arm rabbit-arm-right"
+        ></div>
+
+        <div
+            class="rabbit-foot rabbit-foot-left"
+        ></div>
+
+        <div
+            class="rabbit-foot rabbit-foot-right"
+        ></div>
+
+    </div>
+
+
+    <!-- DIALOGUE -->
+
+    <div class="dialogue">
+
+        <div class="dialogue-name">
+            Yuki
+        </div>
+
+        <div
+            class="dialogue-text"
+            id="question"
+        ></div>
+
+    </div>
+
+
+    <div
+        class="counter"
+        id="counter"
+    >
+        1 / 3
+    </div>
+
+
+    <div
+        class="answers"
+        id="answers"
+    ></div>
+
+
+    <div
+        class="reward"
+        id="reward"
+    >
+
+        <span class="reward-star">
+            ⭐
+        </span>
+
+        <span class="reward-flower">
+            🌸
+        </span>
+
+    </div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     SONG
+========================================================= -->
+
+<section
+    id="song"
+    class="screen"
+>
+
+    <div class="song-card">
+
+        <div class="song-note">
+            ♪
+        </div>
+
+        <h1>
+            Moonstruck
+        </h1>
+
+        <div class="artist">
+            ENHYPEN
+        </div>
+
+        <div class="guess">
+
+            I guess I know... ♡
+
+            <br><br>
+
+            You knew which song
+            was coming, didn't you?
+
+        </div>
+
+
+        <audio
+            id="audio"
+            src="audio/moonstruck.mp3"
+        ></audio>
+
+
+        <button
+            class="music-button"
+            id="musicButton"
+            onclick="toggleMusic()"
+        >
+            ▶
+        </button>
+
+
+        <button
+            class="song-next"
+            onclick="showLetters()"
+        >
+            Next → Love Letters
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     LETTERS
+========================================================= -->
+
+<section
+    id="letters"
+    class="screen"
+>
+
+    <div class="letters-box">
+
+        <div class="letters-title">
+            Love Letters 💌
+        </div>
+
+        <div class="letters-sub">
+            little letters from Yuki
+        </div>
+
+
+        <div
+            class="paper"
+            id="paper"
+        ></div>
+
+
+        <div class="letter-controls">
+
+            <button
+                class="arrow"
+                onclick="previousLetter()"
+            >
+                ←
+            </button>
+
+
+            <span id="letterCounter">
+                1 / 3
+            </span>
+
+
+            <button
+                class="arrow"
+                onclick="nextLetter()"
+            >
+                →
+            </button>
+
+        </div>
+
+
+        <button
+            class="memories-button"
+            onclick="showMemories()"
+        >
+            Our Memories →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     MEMORIES
+========================================================= -->
+
+<section
+    id="memories"
+    class="screen"
+>
+
+    <div class="memories-box">
+
+        <div class="memories-title">
+            Our Memories 📸 ♡
+        </div>
+
+        <div class="gallery" id="gallery"></div>
+
+
+        <button
+            class="memories-button"
+            onclick="showFinal()"
+        >
+            Continue ♡ →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL
+========================================================= -->
+
+<section
+    id="final"
+    class="screen"
+>
+
+    <div class="final-heart">
+        ♡
+    </div>
+
+    <div class="final-title">
+        Happy Birthday
+    </div>
+
+    <div class="final-text">
+
+        I hope this little adventure
+        made you smile.
+
+        <br><br>
+
+        Some memories are too special
+        to fit into words.
+
+        <br><br>
+
+        Happy Birthday, Yuri. ♡
+
+        <br><br>
+
+        — Yuki
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     IMAGE ZOOM
+========================================================= -->
+
+<div
+    class="memory-overlay"
+    id="memoryOverlay"
+    onclick="closeMemoryZoom(event)"
+>
+
+    <img
+        id="zoomedMemory"
+        src=""
+        alt="Memory"
+    >
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+const questions = [
+
+    {
+        question:
+            "What is your fav colour?",
+
+        answers:[
+            "Navy blue",
+            "Pink"
+        ],
+
+        correct:0
+    },
+
+
+    {
+        question:
+            "What is your fav K-pop group?",
+
+        answers:[
+            "ENHYPEN",
+            "BTS"
+        ],
+
+        correct:0
+    },
+
+
+    {
+        question:
+            "What is your fav song?",
+
+        answers:[
+            "I guess I know"
+        ],
+
+        correct:0
+    }
+
+];
+
+
+/* =========================================================
+   LETTERS
+========================================================= */
+
+const letters = [
+    "يحح HAPPY BIRTHDAYYYYعامله ايه يا جنجونتي بص يعنيي الهديه دي قليله انا عارف ولله بس حاولت اعمل احسن القليل انت تستاهل احسن من كده اضعاف ولله بس عارف كلامي مش هيودي و يجيب و مش هيقلل ولا يكبر من هديتي بس ده وصف لحبي الي وصفتهولك ٤٠٢٨٣٧٤٧ مره😋",
+    "يحح مش عارف ابدا منين احبكككك ولله احبك جدا يارب تتبسطي النهرده و يكون يوم تحفه و بصص عايز تشرب حشيش النهرده و تخربها كده بس مش لوحدك معايا طبعا احم يعني يحح وحشتني قدن ولله  خد بوسه اموهه متضايقش مني في يوم لو ضايقتك بالغلط انا بحبك و بخاف عليك و كل الي انا عايزو انكتكون مبسوط حاسس بامان و محدش يقربلك ممكن اكون سعات بضغطك بس بيكون غظ من عني و هههههه سعات بيجيلي حاله كرنج غريبه معاك بس عادتسييي احم بس كده احبكك اوههه",
+    "يارب الهديه تكون عجبتك يعني و الصفحه الجايه يعني حاولت اجيب احلا حجات و خلي الموقع ده سري قدن و بس لاف يووو "
+];
+
+
+/* =========================================================
+   12 MEMORIES
+========================================================= */
+
+const memories = [
+    "iamgs/1.jpeg",
+    "iamgs/2.jpeg",
+    "iamgs/3.jpeg",
+    "iamgs/4.jpeg",
+    "iamgs/5.jpeg",
+    "iamgs/6.jpeg",
+    "iamgs/7.jpeg",
+    "iamgs/8.jpeg",
+    "iamgs/9.jpeg",
+    "iamgs/10.jpeg",
+    "iamgs/11.jpeg",
+    "iamgs/12.jpeg"
+];
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let currentQuestion = 0;
+
+let currentLetter = 0;
+
+
+/* =========================================================
+   SCREEN SWITCH
+========================================================= */
+
+function showScreen(id){
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
+
+    setTimeout(() => {
+
+        document
+            .getElementById(id)
+            .classList.add("active");
+
+    },50);
+
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+setTimeout(() => {
+
+    showScreen("play");
+
+},2700);
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+function startGame(){
+
+    currentQuestion = 0;
+
+    showScreen("gameScreen");
+
+    loadQuestion();
+
+}
+
+
+/* =========================================================
+   LOAD QUESTION
+========================================================= */
+
+function loadQuestion(){
+
+    const q =
+        questions[currentQuestion];
+
+
+    document
+        .getElementById("question")
+        .innerText =
+        q.question;
+
+
+    document
+        .getElementById("counter")
+        .innerText =
+        `${currentQuestion + 1} / ${questions.length}`;
+
+
+    const answers =
+        document.getElementById("answers");
+
+
+    answers.innerHTML = "";
+
+
+    q.answers.forEach(
+        (answer,index) => {
+
+            const button =
+                document.createElement("button");
+
+
+            button.className =
+                "answer";
+
+
+            button.innerText =
+                answer;
+
+
+            button.onclick = () => {
+
+                checkAnswer(
+                    index,
+                    button
+                );
+
+            };
+
+
+            answers.appendChild(button);
+
+        }
+    );
+
+
+    document
+        .getElementById("reward")
+        .classList
+        .remove("show");
+
+}
+
+
+/* =========================================================
+   CHECK ANSWER
+========================================================= */
+
+function checkAnswer(
+    index,
+    button
+){
+
+    const q =
+        questions[currentQuestion];
+
+
+    /* WRONG */
+
+    if(index !== q.correct){
+
+        button
+            .classList
+            .add("wrong");
+
+
+        setTimeout(() => {
+
+            button
+                .classList
+                .remove("wrong");
+
+        },450);
+
+        return;
+    }
+
+
+    /* CORRECT */
+
+    button
+        .classList
+        .add("correct");
+
+
+    document
+        .querySelectorAll(".answer")
+        .forEach(btn => {
+
+            btn.disabled = true;
+
+        });
+
+
+    document
+        .getElementById("reward")
+        .classList
+        .add("show");
+
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+
+        if(
+            currentQuestion <
+            questions.length
+        ){
+
+            loadQuestion();
+
+        }
+
+        else{
+
+            showScreen("song");
+
+        }
+
+    },1000);
+
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+function toggleMusic(){
+
+    const audio =
+        document.getElementById("audio");
+
+    const button =
+        document.getElementById("musicButton");
+
+
+    if(audio.paused){
+
+        audio
+            .play()
+            .then(() => {
+
+                button.innerText = "❚❚";
+
+            })
+            .catch(() => {
+
+                alert(
+                    "Make sure moonstruck.mp3 is inside the audio folder."
+                );
+
+            });
+
+    }
+
+    else{
+
+        audio.pause();
+
+        button.innerText = "▶";
+
+    }
+
+}
+
+
+/* =========================================================
+   LETTERS
+========================================================= */
+
+function showLetters(){
+
+    currentLetter = 0;
+
+    renderLetter();
+
+    showScreen("letters");
+
+}
+
+
+function renderLetter(){
+
+    document
+        .getElementById("paper")
+        .innerText =
+        letters[currentLetter];
+
+
+    document
+        .getElementById("letterCounter")
+        .innerText =
+        `${currentLetter + 1} / ${letters.length}`;
+
+}
+
+
+function nextLetter(){
+
+    if(
+        currentLetter <
+        letters.length - 1
+    ){
+
+        currentLetter++;
+
+        renderLetter();
+
+    }
+
+}
+
+
+function previousLetter(){
+
+    if(currentLetter > 0){
+
+        currentLetter--;
+
+        renderLetter();
+
+    }
+
+}
+
+
+/* =========================================================
+   MEMORIES
+========================================================= */
+
+function showMemories(){
+
+    showScreen("memories");
+
+
+    const gallery =
+        document.getElementById("gallery");
+
+
+    gallery.innerHTML = "";
+
+
+    memories.forEach(
+        (image,index) => {
+
+
+            const photo =
+                document.createElement("div");
+
+
+            photo.className =
+                "photo";
+
+
+            /*
+               random Polaroid angle
+            */
+
+            photo.style.setProperty(
+                "--rotation",
+                `${Math.random() * 8 - 4}deg`
+            );
+
+
+            photo.innerHTML = `
+
+                <img
+                    src="${image}"
+                    alt="Memory ${index + 1}"
+                >
+
+                <p>
+                    Memory #${index + 1} ♡
+                </p>
+
+            `;
+
+
+            /*
+               CLICK PHOTO
+               → OPEN FULL IMAGE
+            */
+
+            photo.addEventListener(
+                "click",
+                () => {
+
+                    const img =
+                        photo.querySelector("img");
+
+
+                    if(
+                        img &&
+                        img.src
+                    ){
+
+                        openMemoryZoom(
+                            img.src
+                        );
+
+                    }
+
+                }
+            );
+
+
+            /*
+               لو الصورة مش موجودة
+            */
+
+            const img =
+                photo.querySelector("img");
+
+
+            img.onerror = function(){
+
+                this.style.display =
+                    "none";
+
+                photo.style.cursor =
+                    "default";
+
+            };
+
+
+            gallery.appendChild(photo);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   OPEN FULL MEMORY
+========================================================= */
+
+function openMemoryZoom(src){
+
+    const overlay =
+        document.getElementById(
+            "memoryOverlay"
+        );
+
+
+    const image =
+        document.getElementById(
+            "zoomedMemory"
+        );
+
+
+    image.src = src;
+
+
+    overlay.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE FULL MEMORY
+========================================================= */
+
+function closeMemoryZoom(event){
+
+    /*
+       يقفل لو دوست بره الصورة
+    */
+
+    if(
+        event.target.id ===
+        "memoryOverlay"
+    ){
+
+        document
+            .getElementById(
+                "memoryOverlay"
+            )
+            .classList
+            .remove("show");
+
+    }
+
+}
+
+
+/* =========================================================
+   ESC TO CLOSE IMAGE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key ===
+            "Escape"
+        ){
+
+            document
+                .getElementById(
+                    "memoryOverlay"
+                )
+                .classList
+                .remove("show");
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+function showFinal(){
+
+    showScreen("final");
+
+}
+
+</script>
+
+</body>
+
+</html>
